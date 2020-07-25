@@ -1,0 +1,15 @@
+const {Router} = require('express');
+
+
+module.exports = function ({UserController}) {
+    const router = Router();
+
+    router.get('/', UserController.index.bind(UserController));
+    router.get('/:id', UserController.showdep.bind(UserController));
+    router.post('/', UserController.store.bind(UserController));
+    router.patch('/:id', UserController.update.bind(UserController));
+    router.delete('/:id', UserController.destroy.bind(UserController));
+    router.use('/*', (req,res)=>{
+        res.json({'message':'Recurso no encotrado'})});
+    return router;
+};

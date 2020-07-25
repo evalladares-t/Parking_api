@@ -1,0 +1,13 @@
+npm i express awilix body-parser pg nodemon cors compression dotenv automapper-js pg-hstore
+
+npm install -g sequelize-cli
+
+
+
+
+sequelize model:create --name tb_user --attributes name:string,last_name:string,dni:string,name_user:string,pass:string,imgurl:string,std:boolean,idprofile:integer
+
+
+
+
+sequelize model:create --name tb_menu --attributes name:string,owner:string

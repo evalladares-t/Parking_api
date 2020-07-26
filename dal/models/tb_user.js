@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class tb_user extends Model {
     
     static associate(models) {
-      // define association here
+      tb_user.hasMany(models.tb_ticket,{
+        foreignKey: 'idticket',
+        as:'tb_ticket'
+      });
     }
   };
   tb_user.init({
@@ -44,7 +47,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       comment:'ESTADO 1=ACTIVO  0= DESCATIVADO'
     },
-    idprofile: DataTypes.INTEGER
+    idprofile:{
+      type: DataTypes.INTEGER,
+      comment:'IDENTIFICADOR DE PROFILE'
+    },
   }, {
     comment: 'TABLA MAESTRO DE LOS USUARIOS DEL SISTEMA',
     sequelize,

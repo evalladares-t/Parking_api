@@ -3,21 +3,21 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class tb_menu extends Model {
+  class tb_typevehicle extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      tb_menu.hasMany(models.tb_permission,{
-        foreignKey: 'idmenu',
-        as:'tb_permission'
+      tb_typevehicle.hasMany(models.tb_vehicle,{
+        foreignKey: 'idtypevehicle',
+        as:'tb_vehicle'
       });
     }
   };
-  tb_menu.init({
-    idmenu: {
+  tb_typevehicle.init({
+    idtypevehicle: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement:true,
@@ -25,16 +25,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type:DataTypes.STRING,
-      comment:'NOMBRE DEL REGISTRO MENU'
+      comment:"NOMBRE DEL TIPO DE VEHICULO"
     },
-    owner: {
-     type: DataTypes.STRING,
-     comment:'DUEÑO DEL REGISTRO MENU'
+    price: {
+      type:DataTypes.INTEGER,
+      comment:"PRECIO POR TIPO DE VEHICULO"
     }
   }, {
-    comment: 'TABLA MAESTRO DEL MENU DEL SISTEMA',
+    comment: 'TABLA MAESTRO DE LOS TIPOS DE VEHICULOS DEL SISTEMA',
     sequelize,
-    modelName: 'tb_menu',
+    modelName: 'tb_typevehicle',
   });
-  return tb_menu;
+  return tb_typevehicle;
 };

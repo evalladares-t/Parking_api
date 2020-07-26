@@ -3,38 +3,39 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class tb_menu extends Model {
+  class tb_permission extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      tb_menu.hasMany(models.tb_permission,{
-        foreignKey: 'idmenu',
-        as:'tb_permission'
-      });
+      
     }
   };
-  tb_menu.init({
-    idmenu: {
+  tb_permission.init({
+    idpermission: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement:true,
       comment:'IDENTIFICADOR UNICO'
     },
-    name: {
-      type:DataTypes.STRING,
-      comment:'NOMBRE DEL REGISTRO MENU'
+    state: {
+      type:DataTypes.BOOLEAN,
+      comment:'ESTADO DE PERMISO'
     },
-    owner: {
-     type: DataTypes.STRING,
-     comment:'DUEÑO DEL REGISTRO MENU'
-    }
+    idprofile: {
+      type: DataTypes.INTEGER,
+      comment:'IDENTIFICADOR DE PROFILE'
+    },
+    idmenu: {
+      type: DataTypes.INTEGER,
+      comment:'IDENTIFICADOR DE MENU'
+    },
   }, {
-    comment: 'TABLA MAESTRO DEL MENU DEL SISTEMA',
+    comment: 'TABLA MAESTRO DE LOS PERMISOS DEL SISTEMA',
     sequelize,
-    modelName: 'tb_menu',
+    modelName: 'tb_permission',
   });
-  return tb_menu;
+  return tb_permission;
 };

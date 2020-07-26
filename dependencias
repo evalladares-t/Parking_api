@@ -5,9 +5,15 @@ npm install -g sequelize-cli
 
 
 
+sequelize model:create --name tb_menu --attributes name:string,owner:string
+sequelize model:create --name tb_profile --attributes name:string
+sequelize model:create --name tb_permission --attributes state:boolean,idprofile:integer,idmenu:integer
 sequelize model:create --name tb_user --attributes name:string,last_name:string,dni:string,name_user:string,pass:string,imgurl:string,std:boolean,idprofile:integer
 
+sequelize model:create --name tb_typevehicle --attributes name:string,price:integer
+sequelize model:create --name tb_vehicle --attributes license_plate:string,idtypevehicle:integer,description:string,reference:string
+sequelize model:create --name tb_parking --attributes name:string,state:string
 
+sequelize model:create --name tb_vehiclespace --attributes date:dateonly,start:date,end:date,cost:integer,idvehicle:string,idparking:integer
 
-
-sequelize model:create --name tb_menu --attributes name:string,owner:string
+sequelize model:create --name tb_ticket --attributes iduser:integer,idvehiclespace:integer

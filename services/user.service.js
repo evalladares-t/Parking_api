@@ -15,6 +15,11 @@ class UserService extends BaseService {
         const entity = await this._entityBusiness.login(name_user);
         return entity;
     }
+
+    async storedep(entity) {
+        const createdEntity = await this._entityBusiness.storedep(entity);
+        return createdEntity;
+    }
 }
 
 module.exports = UserService;

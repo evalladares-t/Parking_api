@@ -21,6 +21,15 @@ class UserController extends BaseController{
         })
     }
 
+    async storedep(req,res){
+        const {body} = req;
+        const store = await this._serviceBase.storedep(body);
+        const result = mapper(this._DTO,store);
+        return res.status(201).json({
+            'data' : result
+        })
+    }
+
 }
 
 module.exports = UserController;

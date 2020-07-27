@@ -1,4 +1,7 @@
 'use strict';
+
+const bcrypt = require("bcrypt");
+
 const {
   Model
 } = require('sequelize');
@@ -37,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     pass: {
       type: DataTypes.STRING(50),
+      validate: {
+        notEmpty:{
+            msg: 'El password no puede ir vacío'
+        }
+      },
       comment:'CONTRASEÑA DEL ACCESO DE USUARIO'
     },
     imgurl: {
@@ -52,9 +60,16 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR DE PROFILE'
     },
   }, {
+    hooks: {
+      beforeCreate: async function(tb_user) {
+        const salt = await bcrypt.genSalt(10); //whatever number you want
+        tb_user.pass = await bcrypt.hash(tb_user.pass, salt);
+      },
+    },
     comment: 'TABLA MAESTRO DE LOS USUARIOS DEL SISTEMA',
     sequelize,
     modelName: 'tb_user',
   });
+
   return tb_user;
 };

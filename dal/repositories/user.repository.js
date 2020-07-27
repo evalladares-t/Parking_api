@@ -22,6 +22,10 @@ class UsuarioRepository extends BaseRepository {
         return result
     }
 
+    storedep(entity) {
+        return this._db[this.entity].create(entity);
+    }
+
     show(iduser) {
         const result = this._db[this.entity].findOne({ where: { iduser } });
         return result

@@ -19,6 +19,12 @@ class UserBusiness extends BaseBusiness {
         const user = mapper(this.entityToMap, entity.toJSON());     
         return {user}
     }
+
+    async storedep(entity) {
+        entity = mapper(this.entityToMap, entity);
+        const createdEntity = await this._entityRepository.storedep(entity);
+        return mapper(this.entityToMap, createdEntity.toJSON());
+    }
 }
 
 module.exports = UserBusiness;

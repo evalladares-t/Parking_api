@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const bcrypt = require("bcrypt");
 const cors = require('cors');
 const compression = require('compression');
 const router = Router();
@@ -12,7 +13,13 @@ module.exports = function ({ AuthMiddleware,UserService, UserRoutes, MenuRoutes 
     apiRoute.post('/login', async (req, res) => {
         const { name_user, pass } = req.body;
         let result = await UserService.login(name_user);
-        //console.log(result.user.pass)
+        const pass_bcrypt = result.user.pass;
+
+        bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+            // result == true
+        });
+
+        console.log(result.user.pass);
         if(result!=null){                        
             if(result.user.pass!=pass){
                 res.json({

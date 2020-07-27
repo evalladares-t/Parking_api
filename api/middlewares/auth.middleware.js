@@ -26,11 +26,11 @@ class AuthMiddleware{
         try {
           const bearerToken = token.split(" ");
           const bearer = jwt.verify(bearerToken[1], process.env.JWT_SECRET);
-          console.log(bearer)
+          //console.log(bearer)
           let result = await this.UserService.show(bearer);
           
           result = mapper(this._DTO,result);
-          console.log(result)
+          //console.log(result)
           next();
         } catch (err) {
           next(

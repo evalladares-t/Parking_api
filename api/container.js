@@ -14,6 +14,9 @@ const MenuRoutes = require('./routes/menu.routes');
 const { UserController, 
     MenuController} = require('./controllers');
 
+//Middleware
+const {AuthMiddleware} =require('./middlewares')
+
 //Service
 const {MenuService,
     UserService} = require('./../services');
@@ -54,6 +57,10 @@ container
         UserController : asClass(UserController).singleton(),
         MenuController : asClass(MenuController).singleton(),        
     })
+    .register({
+        //Middleware
+            AuthMiddleware : asClass(AuthMiddleware).singleton(),
+    }) 
     .register({
         //Service
             UserService : asClass(UserService).singleton(),

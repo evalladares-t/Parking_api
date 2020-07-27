@@ -1,4 +1,5 @@
-npm i express awilix body-parser pg nodemon cors compression dotenv automapper-js pg-hstore
+npm i express awilix body-parser pg nodemon cors compression dotenv automapper-js pg-hstore jsonwebtoken
+http-status-codes
 
 npm install -g sequelize-cli
 

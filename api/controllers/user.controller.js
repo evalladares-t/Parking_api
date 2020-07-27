@@ -7,6 +7,11 @@ class UsuarioController extends BaseController{
         super(UserService,UsuarioDTO,Resource)
     }
 
+
+    async login(req,res,next){
+
+    }
+
     async showdep(req,res){
         const {id} = req.params;
         let result = await this._serviceBase.showdep(id);

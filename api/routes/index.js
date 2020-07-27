@@ -1,32 +1,59 @@
-const {Router} = require('express');
+const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
-const router  = Router();
+const router = Router();
 const apiRoute = Router();
 apiRoute.use(cors()).use(bodyParser.json()).use(compression());
 
-module.exports = function ({AuthMiddleware,UserRoutes,MenuRoutes}) {
-    apiRoute.use('/user', UserRoutes);
-    apiRoute.use('/menu', MenuRoutes);
-    apiRoute.use('/*', (req,res)=>{
-        res.json({'message':'Recurso no encotrado'})
+module.exports = function ({ AuthMiddleware,UserService, UserRoutes, MenuRoutes }) {
+
+    apiRoute.post('/login', async (req, res) => {
+        const { name_user, pass } = req.body;
+        let result = await UserService.login(name_user);
+        //console.log(result.user.pass)
+        if(result!=null){                        
+            if(result.user.pass!=pass){
+                res.json({
+                    'success': false,
+                    'message': 'Contraseña incorrecto',
+                })
+            }
+            else{
+                var token = jwt.sign( result.user.iduser, process.env.JWT_SECRET);
+                res.json({
+                    'success': true,
+                    'message': 'Usuario correcto',
+                    'token':token
+                })
+            }
+        }
+        else{
+            res.json({
+                'success': false,
+                'message': 'Usuario no encontrado',
+            }) 
+        }
     });
-    router.get('/api/v1.0',(req,res)=>{
-        const {protocol, hostname,url} = req;
+
+
+    //Rutas generales
+    apiRoute.use('/user', AuthMiddleware.authMiddleware, UserRoutes);
+    apiRoute.use('/menu', AuthMiddleware.authMiddleware, MenuRoutes);
+    apiRoute.use('/*', (req, res) => {
+        res.json({ 'message': 'Recurso no encotrado' })
+    });
+    router.get('/api/v1.0', (req, res) => {
+        const { protocol, hostname, url } = req;
         res.json({
-            'User': `${protocol}://${hostname}:${process.env.PORT}${url}/user`,            
-            'Menu': `${protocol}://${hostname}:${process.env.PORT}${url}/menu`, 
+            'User': `${protocol}://${hostname}:${process.env.PORT}${url}/user`,
+            'Menu': `${protocol}://${hostname}:${process.env.PORT}${url}/menu`,
         })
     });
-    router.use('/api',(req,res)=>{
-        const {protocol, hostname,url} = req;
-        res.json({
-        '1.0': `${protocol}://${hostname}:${process.env.PORT}${url}/1.0`,            
-    })});
-    router.use('/api/v1.0',apiRoute);
-    router.use('/*', (req,res)=>{
-        res.json({'message':'Recurso no encotrado'})
+    router.use('/api/v1.0', apiRoute);
+    router.use('/*', (req, res) => {
+        res.json({ 'message': 'Recurso no encotrado' })
     });
     return router;
 };

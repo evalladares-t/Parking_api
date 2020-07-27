@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR UNICO'
     },
     license_plate: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       unique:true,
       comment:'PLACA VEHICULAR'
     },
@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       comment:'PLACA VEHICULAR'
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'DESCRIPCION DEL VEHICULO'
     },
     reference: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'REFERENCIA U OBSERVACION DEL VEHICULO'
     },
   }, {

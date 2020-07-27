@@ -9,14 +9,16 @@ class baseController{
 
     async index(req,res){
         const {offset,limit}=req.query;
+        const offsetI = parseInt(offset);
+        const limitI = parseInt(limit);
         const {protocol, hostname} = req;
-        if(limit){
-            if(offset){
-                const result = await this._serviceBase.index(offset, limit);
+        if(limitI){
+            if(offsetI){
+                const result = await this._serviceBase.index(offsetI, limitI);
                 let rows = result.rows;
                 const count = result.count;
                 rows = rows.map(rows => mapper(this._DTO,rows));
-                const resultado = Response(count,parseInt(offset),parseInt(limit),protocol,hostname,this._resource);
+                const resultado = Response(count,parseInt(offsetI),parseInt(limitI),protocol,hostname,this._resource);
                 return res.json({
                     count,
                     previous: resultado.previous,
@@ -25,11 +27,11 @@ class baseController{
                 })
             }
             else{
-                const result = await this._serviceBase.index('0', limit);
+                const result = await this._serviceBase.index(0, limitI);
                 let rows = result.rows;
                 const count = result.count;
                 rows = rows.map(rows => mapper(this._DTO,rows));
-                const resultado = Response(count,0,parseInt(limit),protocol,hostname,this._resource);
+                const resultado = Response(count,0,parseInt(limitI),protocol,hostname,this._resource);
                 return res.json({
                     count,
                     previous: resultado.previous,
@@ -39,12 +41,12 @@ class baseController{
             }
         }
         else{
-            if(offset){
-                const result = await this._serviceBase.index(offset, '20');
+            if(offsetI){
+                const result = await this._serviceBase.index(offsetI, 20);
                 let rows = result.rows;
                 const count = result.count;
                 rows = rows.map(rows=> mapper(this._DTO,rows));
-                const resultado = Response(count,parseInt(offset),20,protocol,hostname,this._resource);
+                const resultado = Response(count,parseInt(offsetI),20,protocol,hostname,this._resource);
                 return res.json({
                     count,
                     previous: resultado.previous,
@@ -53,7 +55,7 @@ class baseController{
                 })
             }
             else {
-                const result = await this._serviceBase.index('0', '20');
+                const result = await this._serviceBase.index(0, 20);
                 let rows = result.rows;
                 const count = result.count;
                 rows = rows.map(rows=> mapper(this._DTO,rows));

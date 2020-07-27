@@ -20,27 +20,27 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR UNICO'
     },
     name:{ 
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'NOMBRE DEL USUARIO'
     },
     last_name:{
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'APELLIDOS DEL USUARIO'
     },
     dni: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'DNI DEL USUARIO'
     },
     name_user: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'NOMBRE DEL ACCESO DE USUARIO'
     },
     pass: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:'CONTRASEÑA DEL ACCESO DE USUARIO'
     },
     imgurl: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(70),
       comment:'DIRECCION URL DE LA FOTO DEL USUARIO'
     },
     std: {

@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR UNICO'
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:"NOMBRE DEL ESPACIO DE PARKING"
     },
     state: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       comment:"ESTADO DEL ESPACIO DE PARKING"
     },
   }, {

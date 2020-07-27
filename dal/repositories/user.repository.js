@@ -2,7 +2,7 @@
 const BaseRepository = require("./base.repository");
 class UsuarioRepository extends BaseRepository {
     constructor({ db }) {
-        super(db, "tb_users");
+        super(db, "tb_user");
     }
 
     index(offset,limit) {
@@ -14,9 +14,16 @@ class UsuarioRepository extends BaseRepository {
         return result
     }
 
+    login(name_user) {
+
+        const result = this._db[this.entity].findOne({
+            where:{name_user}
+        });
+        return result
+    }
+
     show(iduser) {
         const result = this._db[this.entity].findOne({ where: { iduser } });
-
         return result
     }
 

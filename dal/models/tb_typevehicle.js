@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR UNICO'
     },
     name: {
-      type:DataTypes.STRING,
+      type:DataTypes.STRING(50),
       comment:"NOMBRE DEL TIPO DE VEHICULO"
     },
     price: {

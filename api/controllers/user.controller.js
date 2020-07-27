@@ -1,16 +1,13 @@
 const BaseController = require("./base.controller");
-const {UsuarioDTO,MultimediaDTO,AtencionDTO,RegistroModuloDTO} = require('../dtos');
+const {UserDTO} = require('../dtos');
 const Resource = "usuario";
 const mapper = require('automapper-js');
-class UsuarioController extends BaseController{
+
+class UserController extends BaseController{
     constructor({UserService}) {
-        super(UserService,UsuarioDTO,Resource)
+        super(UserService,UserDTO,Resource)
     }
 
-
-    async login(req,res,next){
-
-    }
 
     async showdep(req,res){
         const {id} = req.params;
@@ -18,18 +15,12 @@ class UsuarioController extends BaseController{
         if(!result){
             res.json({'message':'Recurso no encotrado'})
         }
-        const usuario = mapper(this._DTO,result.usuario);
-        const multimedia = (result.multimedia)?mapper(MultimediaDTO,result.multimedia):null;
-        const atencion = (result.atencion)?mapper(AtencionDTO,result.atencion):null;
-        const registromodulo = (result.registromodulo)?mapper(RegistroModuloDTO,result.registromodulo):null;
+        const usuario = mapper(this._DTO,result.iduser);
         return res.json({
-            usuario,
-            multimedia,
-            atencion,
-            registromodulo
+            usuario
         })
     }
 
 }
 
-module.exports = UsuarioController;
+module.exports = UserController;

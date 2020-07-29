@@ -13,14 +13,9 @@ module.exports = function ({ AuthMiddleware,UserService, UserRoutes, MenuRoutes 
     apiRoute.post('/login', async (req, res) => {
         const { name_user, pass } = req.body;
         let result = await UserService.login(name_user);
-        const pass_bcrypt = result.user.pass;
+        //console.log(result.user.pass)
 
-        bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
-            // result == true
-        });
-
-        console.log(result.user.pass);
-        if(result!=null){                        
+        if(result!=null){  
             if(result.user.pass!=pass){
                 res.json({
                     'success': false,

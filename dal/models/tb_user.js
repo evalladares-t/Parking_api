@@ -60,16 +60,27 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR DE PROFILE'
     },
   }, {
-    hooks: {
-      beforeCreate: async function(tb_user) {
-        const salt = await bcrypt.genSalt(10); //whatever number you want
-        tb_user.pass = await bcrypt.hash(tb_user.pass, salt);
+    /*instanceMethods: {
+      generateHash = async function(password) {
+        tb_user.pass = await bcrypt.hash(password, bcrypt.genSaltSync(10));
       },
-    },
+      async validPassword(pass) {
+          return  await bcrypt.compare(pass, this.pass);
+      }
+    },*/
     comment: 'TABLA MAESTRO DE LOS USUARIOS DEL SISTEMA',
     sequelize,
     modelName: 'tb_user',
   });
+
+  /*tb_user.prototype.validPassword = async function(password) {
+    console.log(this.pass);
+    console.log(password);
+    const xx = await bcrypt.compare(password, this.pass);
+    //const xx = await bcrypt.compare(this.pass,password);
+    console.log(xx)
+    return  xx;
+  }*/
 
   return tb_user;
 };

@@ -12,10 +12,12 @@ module.exports = function ({ AuthMiddleware,UserService, UserRoutes, MenuRoutes 
 
     apiRoute.post('/login', async (req, res) => {
         const { name_user, pass } = req.body;
-        let result = await UserService.login(name_user);
-        //console.log(result.user.pass)
+        const result = await UserService.login(name_user,pass);
 
         if(result!=null){  
+            //result.validPassword(pass);
+            //console.log(ll)
+
             if(result.user.pass!=pass){
                 res.json({
                     'success': false,

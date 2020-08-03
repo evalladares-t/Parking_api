@@ -11,8 +11,8 @@ class UserService extends BaseService {
         return entity;
     }
 
-    async login(name_user) {
-        const entity = await this._entityBusiness.login(name_user);
+    async login(name_user,pass) {
+        const entity = await this._entityBusiness.login(name_user,pass);
         return entity;
     }
 

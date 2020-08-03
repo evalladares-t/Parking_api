@@ -18,12 +18,12 @@ class UsuarioRepository extends BaseRepository {
 
         const result = this._db[this.entity].findOne({
             where:{name_user}
-        });
+        })
         return result
     }
 
     storedep(entity) {
-        return this._db[this.entity].create(entity);
+        return this._db[this.entity].create(entity)
     }
 
     show(iduser) {

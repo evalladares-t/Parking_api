@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       comment:'NOMBRE DEL ACCESO DE USUARIO'
     },
     pass: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(70),
       validate: {
         notEmpty:{
             msg: 'El password no puede ir vacío'

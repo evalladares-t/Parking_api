@@ -21,6 +21,18 @@ class UserController extends BaseController{
         })
     }
 
+    async updatedep(req,res){
+        const {body} = req;
+        const {id} = req.params;
+        await this._serviceBase.updatedep(id,body);
+        return res.status(201).json({
+            'message':'Se actualizo correctamente',
+            'data' : {
+                id
+            }
+        })
+    }
+
     async storedep(req,res){
         const {body} = req;
         const store = await this._serviceBase.storedep(body);

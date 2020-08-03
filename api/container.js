@@ -12,7 +12,7 @@ const MenuRoutes = require('./routes/menu.routes');
 
 //Controllers
 const { UserController, 
-    MenuController} = require('./controllers');
+    MenuController, AuthController} = require('./controllers');
 
 //Middleware
 const {AuthMiddleware} =require('./middlewares')
@@ -54,6 +54,7 @@ container
         UserRoutes : asClass(UserRoutes).singleton(),
         MenuRoutes : asClass(MenuRoutes).singleton(),
     //Api Controller
+        AuthController : asClass(AuthController).singleton(),
         UserController : asClass(UserController).singleton(),
         MenuController : asClass(MenuController).singleton(),        
     })

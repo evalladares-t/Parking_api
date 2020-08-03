@@ -17,21 +17,18 @@ class UserBusiness extends BaseBusiness {
 
     async login(name_user, pass) {
         const entity = await this._entityRepository.login(name_user);        
-        if (!entity) return null;
+        if (!entity) return {user:null,"validate":false}
         const user = mapper(this.entityToMap, entity.toJSON());
-        console.log(pass)
-        await bcrypt.compare(pass,user.pass,function(e,r){
-            if(e){
-                console.log(e)
-            }
-            if(r){//$2b$10$R5UpNpgKLgqUXLu3jHcG3.pNiFVjG38MJfCX0cer2OZWFUgx4SxDe
-                console.log(r)
-            }
-            else{
-                console.log('passwords do not match')
-            }
-        })
-        return { user }
+        const validate = await bcrypt.compare(pass,user.pass)
+        
+        return {user, validate}
+        
+    }
+
+    async updatedep(id, entity) {
+        entity.pass= await bcrypt.hash(entity.pass, bcrypt.genSaltSync(8));
+        const updatedEntity = await this._entityRepository.update(id, entity);
+        return mapper(this.entityToMap, updatedEntity);
     }
 
     async storedep(entity) {

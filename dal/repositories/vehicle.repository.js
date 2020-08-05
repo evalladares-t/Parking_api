@@ -21,12 +21,12 @@ class VehicleRepository extends BaseRepository {
     }
 
     update(idvehicle, entity) {
-        entity.iduser = parseInt(idvehicle);
+        entity.idvehicle = parseInt(idvehicle);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idvehicle } });
     }
 
-    destroy(iduser) {
+    destroy(idvehicle) {
         return this._db[this.entity].destroy({ where: { idvehicle } });
     }
 }

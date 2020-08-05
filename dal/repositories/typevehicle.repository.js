@@ -14,19 +14,24 @@ class TypeVehicleRepository extends BaseRepository {
         return result
     }
 
-    show(idtypevehicle) {
-        const result = this._db[this.entity].findOne({ where: { idtypevehicle } });
+    async show(idtypevehicle) {
+        const result = await this._db[this.entity].findOne({ where: { idtypevehicle },
+            include:[{
+                model: this._db["tb_vehicle"],
+                as:'tb_vehicle'
+            }]
+        });
 
         return result
     }
 
     update(idtypevehicle, entity) {
-        entity.iduser = parseInt(idtypevehicle);
+        entity.idtypevehicle = parseInt(idtypevehicle);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idtypevehicle } });
     }
 
-    destroy(iduser) {
+    destroy(idtypevehicle) {
         return this._db[this.entity].destroy({ where: { idtypevehicle } });
     }
 }

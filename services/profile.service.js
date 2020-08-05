@@ -6,6 +6,11 @@ class ProfileService extends BaseService {
         super(ProfileBusiness);
     }
 
+    async showdep(id) {
+        const entity = await this._entityBusiness.showdep(id);
+        return entity;
+    }
+    
 }
 
 module.exports = ProfileService;

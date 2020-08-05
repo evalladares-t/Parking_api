@@ -6,10 +6,7 @@ class MenuService extends BaseService {
         super(MenuBusiness);
     }
 
-    async showdep(id) {
-        const entity = await this._entityBusiness.showdep(id);
-        return entity;
-    }
+
 }
 
 module.exports = MenuService;

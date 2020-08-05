@@ -1,5 +1,5 @@
 class MenuDto{
-    idmod = 0;
+    idmenu = 0;
     name = "";
     owner = "";
 

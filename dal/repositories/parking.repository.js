@@ -21,12 +21,12 @@ class ParkingRepository extends BaseRepository {
     }
 
     update(idparking, entity) {
-        entity.iduser = parseInt(idparking);
+        entity.idparking = parseInt(idparking);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idparking } });
     }
 
-    destroy(iduser) {
+    destroy(idparking) {
         return this._db[this.entity].destroy({ where: { idparking } });
     }
 }

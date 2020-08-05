@@ -1,6 +1,6 @@
 const mapper = require("automapper-js");
 const BaseBusiness = require("./base.business");
-const { User } = require("./models");
+const { User, Profile, Ticket } = require("./models");
 const bcrypt = require("bcrypt");
 
 class UserBusiness extends BaseBusiness {
@@ -12,7 +12,15 @@ class UserBusiness extends BaseBusiness {
         const entity = await this._entityRepository.show(id);
         if (!entity) return null;
         const user = mapper(this.entityToMap, entity.toJSON());
-        return { user }
+        let profile = null;
+        let ticket = null;
+        if(entity.profile){
+            profile = mapper(Profile, entity.profile);            
+        }
+        if(entity.ticket){
+            ticket = mapper(Ticket, entity.ticket);
+        }
+        return { user, profile, ticket}
     }
 
     async login(name_user, pass) {

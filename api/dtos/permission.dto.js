@@ -1,7 +1,7 @@
 class PermissionDto{
     idpermission = 0;
     state = "";
-    ipprofile = "";
+    idprofile = "";
     idmenu = "";
 
 }

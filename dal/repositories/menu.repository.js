@@ -1,8 +1,8 @@
 
 const BaseRepository = require("./base.repository");
-class UsuarioRepository extends BaseRepository {
+class MenuRepository extends BaseRepository {
     constructor({ db }) {
-        super(db, "tb_menus");
+        super(db, "tb_menu");
     }
 
     index(offset,limit) {
@@ -21,14 +21,14 @@ class UsuarioRepository extends BaseRepository {
     }
 
     update(idmenu, entity) {
-        entity.iduser = parseInt(idmenu);
+        entity.idmenu = parseInt(idmenu);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idmenu } });
     }
 
-    destroy(iduser) {
+    destroy(idmenu) {
         return this._db[this.entity].destroy({ where: { idmenu } });
     }
 }
 
-module.exports = UsuarioRepository;
+module.exports = MenuRepository;

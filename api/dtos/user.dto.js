@@ -4,8 +4,10 @@ class UserDto{
     last_name = "";
     dni = "";
     name_user = "";
-    pass = "";
+    pass = "";    
     imgurl = "";
     std = false;
+    idprofile="";
+    idticket="";
 }
 module.exports = UserDto;

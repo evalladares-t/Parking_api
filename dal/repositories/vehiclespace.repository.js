@@ -12,21 +12,29 @@ class VehicleSpaceRepository extends BaseRepository {
             ]
         });
         return result
-    }
+    }//2020-07-27T10:42:22.000Z
 
-    show(idvehiclespace) {
-        const result = this._db[this.entity].findOne({ where: { idvehiclespace } });
-
+    async show(idvehiclespace) {
+        const result = await this._db[this.entity].findOne({ where: { idvehiclespace },
+            include:[{
+                model: this._db["tb_vehicle"],
+                as:'tb_vehicle'
+            }],
+            include:[{
+                model: this._db["tb_parking"],
+                as:'tb_parking'
+            }]
+        });
         return result
     }
 
     update(idvehiclespace, entity) {
-        entity.iduser = parseInt(idvehiclespace);
+        entity.idvehiclespace = parseInt(idvehiclespace);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idvehiclespace } });
     }
 
-    destroy(iduser) {
+    destroy(idvehiclespace) {
         return this._db[this.entity].destroy({ where: { idvehiclespace } });
     }
 }

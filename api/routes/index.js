@@ -27,8 +27,16 @@ ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,P
     router.get('/api/v1.0', (req, res) => {
         const { protocol, hostname, url } = req;
         res.json({
+            'Login' : `${protocol}://${hostname}:${process.env.PORT}${url}/login`,
             'User': `${protocol}://${hostname}:${process.env.PORT}${url}/user`,
             'Menu': `${protocol}://${hostname}:${process.env.PORT}${url}/menu`,
+            'permission': `${protocol}://${hostname}:${process.env.PORT}${url}/permission`,
+            'profile': `${protocol}://${hostname}:${process.env.PORT}${url}/profile`,
+            'ticket': `${protocol}://${hostname}:${process.env.PORT}${url}/ticket`,
+            'vehiclespace': `${protocol}://${hostname}:${process.env.PORT}${url}/vehiclespace`,
+            'vehicle': `${protocol}://${hostname}:${process.env.PORT}${url}/vehicle`,
+            'typevehicle': `${protocol}://${hostname}:${process.env.PORT}${url}/typevehicle`,
+            'parking': `${protocol}://${hostname}:${process.env.PORT}${url}/parking`,
         })
     });
     router.use('/api/v1.0', apiRoute);

@@ -21,12 +21,12 @@ class TicketRepository extends BaseRepository {
     }
 
     update(idticket, entity) {
-        entity.iduser = parseInt(idticket);
+        entity.idticket = parseInt(idticket);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idticket } });
     }
 
-    destroy(iduser) {
+    destroy(idticket) {
         return this._db[this.entity].destroy({ where: { idticket } });
     }
 }

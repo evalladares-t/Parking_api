@@ -5,11 +5,12 @@ class AuthController{
     constructor({UserService}) {
         this._userService = UserService;
     }
-
+    //pass master : $2b$08$btxTxotTturjDOyUNSKcqede1hYOaOCXzWLxcHstECRx6XuIkdFWu
+    //toker master : eyJhbGciOiJIUzI1NiJ9.MQ.fGaUARI99DDadCuNm4ZUhaB6Bpx8KiJsnCLTisJ0bp4
     async login (req, res) {
         const { name_user, pass } = req.body;
         const result = await this._userService.login(name_user,pass);
-        console.log(result.entity.pass)
+        console.log(result.validate)
 
         if(result.entity!=null){  
             if(!result.validate){

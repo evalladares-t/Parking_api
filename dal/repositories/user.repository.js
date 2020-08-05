@@ -9,7 +9,8 @@ class UsuarioRepository extends BaseRepository {
         const result = this._db[this.entity].findAndCountAll({
             offset,limit,order:[
                 'iduser'
-            ]
+            ],
+            attributes:{ exclude: ['pass'] }
         });
         return result
     }
@@ -26,8 +27,18 @@ class UsuarioRepository extends BaseRepository {
         return this._db[this.entity].create(entity)
     }
 
-    show(iduser) {
-        const result = this._db[this.entity].findOne({ where: { iduser } });
+    async show(iduser) {
+        const result = await this._db[this.entity].findOne({ where: { iduser },
+            include:[{
+                model: this._db["tb_profile"],
+                as:'tb_profile'
+            }],
+            include:[{
+                model: this._db["tb_ticket"],
+                as:'tb_ticket'
+            }] 
+        });
+        
         return result
     }
 

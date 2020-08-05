@@ -1,5 +1,5 @@
 const BaseController = require("./base.controller");
-const {UserDTO} = require('../dtos');
+const {UserDTO, ProfileDTO, TicketDTO} = require('../dtos');
 const Resource = "usuario";
 const mapper = require('automapper-js');
 
@@ -13,11 +13,16 @@ class UserController extends BaseController{
         const {id} = req.params;
         let result = await this._serviceBase.showdep(id);
         if(!result){
-            res.json({'message':'Recurso no encotrado'})
+            res.json({'message':'Sin datos a mostrar'})
         }
-        const usuario = mapper(this._DTO,result.iduser);
+        //console.log(result.profile)
+        const usuario = mapper(this._DTO,result.usuario);
+        const profile = (result.profile)?mapper(ProfileDTO,result.profile):null;
+        const ticket = (result.ticket)?mapper(TicketDTO,result.ticket):null;
         return res.json({
-            usuario
+            usuario,
+            profile,
+            ticket
         })
     }
 

@@ -16,17 +16,16 @@ class PermissionRepository extends BaseRepository {
 
     show(idpermission) {
         const result = this._db[this.entity].findOne({ where: { idpermission } });
-
         return result
     }
 
     update(idpermission, entity) {
-        entity.iduser = parseInt(idpermission);
+        entity.idpermission = parseInt(idpermission);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idpermission } });
     }
 
-    destroy(iduser) {
+    destroy(idpermission) {
         return this._db[this.entity].destroy({ where: { idpermission } });
     }
 }

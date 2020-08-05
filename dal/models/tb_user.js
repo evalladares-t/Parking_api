@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
       tb_user.hasMany(models.tb_ticket,{
-        foreignKey: 'idticket',
+        foreignKey: 'iduser',
         as:'tb_ticket'
       });
     }
@@ -58,6 +58,10 @@ module.exports = (sequelize, DataTypes) => {
     idprofile:{
       type: DataTypes.INTEGER,
       comment:'IDENTIFICADOR DE PROFILE'
+    },
+    idticket:{
+      type: DataTypes.INTEGER,
+      comment:'IDENTIFICADOR DE TICKET'
     },
   }, {
     /*instanceMethods: {

@@ -14,19 +14,25 @@ class ProfileRepository extends BaseRepository {
         return result
     }
 
-    show(idprofile) {
-        const result = this._db[this.entity].findOne({ where: { idprofile } });
-
+    async show(idprofile) {
+        //const result = this._db[this.entity].findOne({ where: { idprofile } });
+        const result = await this._db[this.entity].findOne({ where: { idprofile },
+            include:[{
+                model: this._db["tb_permission"],
+                as:'tb_permission'
+            }]
+        });
+        //console.log(prueba);
         return result
     }
 
     update(idprofile, entity) {
-        entity.iduser = parseInt(idprofile);
+        entity.idprofile = parseInt(idprofile);
         delete entity.updatedAt;
         return this._db[this.entity].update(entity, { where: { idprofile } });
     }
 
-    destroy(iduser) {
+    destroy(idprofile) {
         return this._db[this.entity].destroy({ where: { idprofile } });
     }
 }

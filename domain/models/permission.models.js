@@ -1,7 +1,7 @@
 class PermissionModels{
     idpermission = 0;
     state = "";
-    ipprofile = "";
+    idprofile = "";
     idmenu = "";
 
 }

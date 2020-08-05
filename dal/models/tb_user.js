@@ -56,9 +56,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(70),
       comment:'DIRECCION URL DE LA FOTO DEL USUARIO'
     },
-    std: {
+    state: {
       type: DataTypes.BOOLEAN,
       comment:'ESTADO 1=ACTIVO  0= DESCATIVADO'
+    },
+    token:{
+      type: DataTypes.STRING(100),
+      comment:'JWT DEL USUARIO'
     },
     idprofile:{
       type: DataTypes.INTEGER,

@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       comment:'IDENTIFICADOR UNICO'
     },
     name:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       comment:'NOMBRE DEL TICKET'
     },
     iduser: {

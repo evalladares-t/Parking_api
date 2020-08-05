@@ -1,7 +1,7 @@
 class MenuDto{
     idmenu = 0;
     name = "";
-    owner = "";
+    owner = null;
 
 }
 module.exports = MenuDto;

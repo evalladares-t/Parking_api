@@ -10,8 +10,6 @@ class AuthController{
     async login (req, res) {
         const { name_user, pass } = req.body;
         const result = await this._userService.login(name_user,pass);
-        console.log(result.validate)
-
         if(result.entity!=null){  
             if(!result.validate){
                 res.json({
@@ -21,6 +19,8 @@ class AuthController{
             }
             else{
                 var token = jwt.sign( result.entity.iduser, process.env.JWT_SECRET);
+                const emit = {"token":token}
+                await this._userService.update(result.entity.iduser,emit);
                 res.json({
                     'success': true,
                     'message': 'Usuario correcto',

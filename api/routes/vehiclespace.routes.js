@@ -6,7 +6,7 @@ module.exports = function ({VehicleSpaceController}) {
 
     router.get('/', VehicleSpaceController.index.bind(VehicleSpaceController));
     router.get('/:id', VehicleSpaceController.showdep.bind(VehicleSpaceController));
-    router.post('/', VehicleSpaceController.store.bind(VehicleSpaceController));
+    router.post('/', VehicleSpaceController.storedep.bind(VehicleSpaceController));
     router.patch('/:id', VehicleSpaceController.update.bind(VehicleSpaceController));
     router.delete('/:id', VehicleSpaceController.destroy.bind(VehicleSpaceController));
     router.use('/*', (req,res)=>{

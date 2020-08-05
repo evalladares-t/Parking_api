@@ -1,6 +1,6 @@
 class PermissionDto{
     idpermission = 0;
-    state = "";
+    state = false;
     idprofile = "";
     idmenu = "";
 

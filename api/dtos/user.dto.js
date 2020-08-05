@@ -7,6 +7,7 @@ class UserDto{
     pass = "";    
     imgurl = "";
     std = false;
+    token="";
     idprofile="";
     idticket="";
 }

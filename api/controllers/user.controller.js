@@ -12,7 +12,6 @@ class UserController extends BaseController{
     async showdep(req,res){
         const {id} = req.params;
         let result = await this._serviceBase.showdep(id);
-        //console.log(result.usuario)
         if(!result){
             res.json({'message':'Sin datos a mostrar'})
         }

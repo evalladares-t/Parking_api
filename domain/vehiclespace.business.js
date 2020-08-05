@@ -10,15 +10,15 @@ class VehicleSpaceBusiness extends BaseBusiness {
     async showdep(id) {
         const entity = await this._entityRepository.show(id);
         if (!entity) return null;
-        console.log(entity)
+        //console.log(entity)
         const vehiclespace = mapper(this.entityToMap, entity.toJSON());
         let vehicle = null;
         let parking = null;
-        if(entity.vehicle){
-            vehicle = mapper(Vehicle, entity.vehicle);
+        if(entity.tb_vehicle){
+            vehicle = mapper(Vehicle, entity.tb_vehicle);
         }
-        if(entity.parking){
-            parking = mapper(Parking, entity.parking);
+        if(entity.tb_parking){
+            parking = mapper(Parking, entity.tb_parking);
         }
         //console.log(parking)
         return {vehiclespace,vehicle, parking}

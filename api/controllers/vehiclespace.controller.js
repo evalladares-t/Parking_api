@@ -13,7 +13,7 @@ class VehicleSpaceController extends BaseController{
         if(!result){
             res.json({'message':'Recurso no encotrado'})
         }
-        //console.log(result)
+        console.log(result)
         const vehiclespace = mapper(this._DTO,result.vehiclespace);
         const vehicle = (result.vehicle)?mapper(VehicleDTO,result.vehicle):null;
         const parking = (result.parking)?mapper(ParkingDTO,result.parking):null;

@@ -32,12 +32,13 @@ class UsuarioRepository extends BaseRepository {
             include:[{
                 model: this._db["tb_profile"],
                 as:'tb_profile'
-            }],
-            include:[{
+            },{
                 model: this._db["tb_ticket"],
                 as:'tb_ticket'
-            }] 
+            }],
+             
         });
+        //console.log(result)
         
         return result
     }

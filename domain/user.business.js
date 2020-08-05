@@ -14,12 +14,14 @@ class UserBusiness extends BaseBusiness {
         const user = mapper(this.entityToMap, entity.toJSON());
         let profile = null;
         let ticket = null;
-        if(entity.profile){
-            profile = mapper(Profile, entity.profile);            
+        if(entity.tb_profile){
+            profile = mapper(Profile, entity.tb_profile);            
         }
-        if(entity.ticket){
-            ticket = mapper(Ticket, entity.ticket);
+        
+        if(entity.tb_ticket){
+            ticket = mapper(Ticket, entity.tb_ticket);
         }
+        //console.log(ticket)
         return { user, profile, ticket}
     }
 

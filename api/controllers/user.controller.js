@@ -12,11 +12,11 @@ class UserController extends BaseController{
     async showdep(req,res){
         const {id} = req.params;
         let result = await this._serviceBase.showdep(id);
+        //console.log(result.usuario)
         if(!result){
             res.json({'message':'Sin datos a mostrar'})
         }
-        //console.log(result.profile)
-        const usuario = mapper(this._DTO,result.usuario);
+        const usuario = mapper(this._DTO,result.user);
         const profile = (result.profile)?mapper(ProfileDTO,result.profile):null;
         const ticket = (result.ticket)?mapper(TicketDTO,result.ticket):null;
         return res.json({

@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idvehicle',
         as:'tb_vehiclespace'
       });
+      tb_vehicle.belongsTo(models.tb_typevehicle,{
+        foreignKey: 'idtypevehicle',
+        as:'tb_typevehicle'
+      });
     }
   };
   tb_vehicle.init({

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idparking',
         as:'tb_vehiclespace'
       });
+      
     }
   };
   tb_parking.init({
@@ -32,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       comment:"ESTADO DEL ESPACIO DE PARKING"
     },
   }, {
+    comment: 'TABLA MAESTRO DE PARKING DEL SISTEMA',
     sequelize,
     modelName: 'tb_parking',
   });

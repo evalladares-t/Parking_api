@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'iduser',
         as:'tb_ticket'
       });
+
+      tb_user.belongsTo(models.tb_profile,{
+        foreignKey: 'idprofile',
+        as:'tb_profile'
+      });
     }
   };
   tb_user.init({

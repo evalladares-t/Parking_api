@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idvehiclespace',
         as:'tb_ticket'
       });
+      tb_vehiclespace.belongsTo(models.tb_vehicle,{
+        foreignKey: 'idvehicle',
+        as:'tb_vehicle'
+      });
+      tb_vehiclespace.belongsTo(models.tb_parking,{
+        foreignKey: 'idparking',
+        as:'tb_parking'
+      });
     }
   };
   tb_vehiclespace.init({

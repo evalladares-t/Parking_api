@@ -8,6 +8,7 @@ class UserService extends BaseService {
 
     async showdep(id) {
         const entity = await this._entityBusiness.showdep(id);
+        //console.log(entity)
         return entity;
     }
 

@@ -19,11 +19,11 @@ class VehicleSpaceRepository extends BaseRepository {
             include:[{
                 model: this._db["tb_vehicle"],
                 as:'tb_vehicle'
-            }],
-            include:[{
+            },{
                 model: this._db["tb_parking"],
                 as:'tb_parking'
-            }]
+            }],
+            
         });
         return result
     }

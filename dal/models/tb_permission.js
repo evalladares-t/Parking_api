@@ -10,7 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      
+      tb_permission.belongsTo(models.tb_menu,{
+        foreignKey: 'idmenu',
+        as:'tb_menu'
+      });
+      tb_permission.belongsTo(models.tb_profile,{
+        foreignKey: 'idprofile',
+        as:'tb_profile'
+      });
     }
   };
   tb_permission.init({

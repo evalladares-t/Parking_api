@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
     owner: {
      type: DataTypes.INTEGER,
      comment:'DUEÑO DEL REGISTRO MENU'
+    },
+    route:{
+      type: DataTypes.STRING(50),
+      comment:'RUTA PARA EL FRONT'
     }
   }, {
     comment: 'TABLA MAESTRO DEL MENU DEL SISTEMA',

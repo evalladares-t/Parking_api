@@ -16,9 +16,8 @@ class UsuarioRepository extends BaseRepository {
     }
 
     login(name_user) {
-
         const result = this._db[this.entity].findOne({
-            where:{name_user}
+            where:{name_user},
         })
         return result
     }
@@ -29,6 +28,7 @@ class UsuarioRepository extends BaseRepository {
 
     async show(iduser) {
         const result = await this._db[this.entity].findOne({ where: { iduser },
+            attributes:{ exclude: ['pass'] },
             include:[{
                 model: this._db["tb_profile"],
                 as:'tb_profile'

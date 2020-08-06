@@ -7,6 +7,16 @@ class PermissionBusiness extends BaseBusiness {
         super(PermissionRepository, Permission);
     }
 
+    async showdep(idprofile) {
+        //console.log(idprofile)
+        const entities = await this._entityRepository.showdep(idprofile);
+        if (!entities) return null;
+        //console.log(entity)
+        const permission = entities.map(entity => mapper(this.entityToMap, entity.toJSON()));        
+        return { permission}
+    }
+
+
 }
 
 module.exports = PermissionBusiness;

@@ -6,6 +6,11 @@ class PermissionService extends BaseService {
         super(PermissionBusiness);
     }
 
+    async showdep(idprofile) {
+        const entity = await this._entityBusiness.showdep(idprofile);
+        return entity;
+    }
+
 }
 
 module.exports = PermissionService;

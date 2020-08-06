@@ -1,10 +1,11 @@
-//const {UsuarioDTO} = require('../dtos');
+const {MenuDTO} = require('../dtos');
 const jwt = require('jsonwebtoken');
 const mapper = require('automapper-js');
 class AuthController{
     constructor({UserService,MenuService, PermissionService}) {
         this._userService = UserService;
         this._menuService = MenuService;
+        this._menuDTO = MenuDTO;
         this._permissionService = PermissionService;
     }
     //pass master : $2b$08$btxTxotTturjDOyUNSKcqede1hYOaOCXzWLxcHstECRx6XuIkdFWu
@@ -22,7 +23,38 @@ class AuthController{
             else{
                 var token = jwt.sign( result.entity.iduser, process.env.JWT_SECRET);
                 const user= await this._userService.show(result.entity.iduser);
-                const menu = await this._menuService.index();
+                //const menu = await this._menuService.index();
+                const menu = await this._menuService.index(0, 20);
+                //console.log(menu)
+                let rowsmenu = menu.rows;
+                //const count = result.count;
+                rowsmenu = rowsmenu.map(rowsmenu=> mapper(this._menuDTO,rowsmenu));
+                var nolimpio = [];
+                var limpio = [];
+                var padre =[];
+                
+                rowsmenu.forEach(element => {
+                    if(element.owner!=null){
+                        nolimpio.push(element)
+                    }
+                    else{
+                        limpio.push(element);
+                    }
+                });
+                
+                for(var i=0;i<limpio.length;i++){
+                    padre[i] = limpio[i];
+                    padre[i].children=[]
+                    var xx=0;
+                    for(var j=0; j<nolimpio.length;j++){
+                        if(limpio[i].idmenu===nolimpio[j].owner){
+                            console.log(xx)
+                            padre[i].children[xx]=nolimpio[j];
+                            xx++;
+                        }
+                    }
+                }
+
                 const permission = await this._permissionService.showdep(result.entity.idprofile);
                 delete user.pass;
                 const emit = {"token":token}
@@ -32,7 +64,7 @@ class AuthController{
                     'message': 'Usuario correcto',
                     'user':user,
                     'token':token,
-                    'menu':menu,
+                    'menu':padre,
                     'permission':permission
                     
                     

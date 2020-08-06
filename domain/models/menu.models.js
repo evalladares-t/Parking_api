@@ -3,5 +3,6 @@ class MenuModels {
     icon="";
     text = "";
     owner = 0;
+    route="";
 }
 module.exports = MenuModels;

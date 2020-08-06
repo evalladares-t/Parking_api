@@ -7,8 +7,7 @@ class UserModels {
     name_user = "";
     pass = "";
     imgurl = "";
-    std = false;
+    state = false;
     idprofile="";
-    idticket="";
 }
 module.exports = UserModels;

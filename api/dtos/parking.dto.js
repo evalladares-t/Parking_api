@@ -1,7 +1,7 @@
 class ParkingDto{
     idparking = 0;
     name = "";
-    state = "";
+    state = false;
 
 }
 module.exports = ParkingDto;

@@ -6,9 +6,8 @@ class UserDto{
     name_user = "";
     pass = "";    
     imgurl = "";
-    std = false;
+    state = false;
     token="";
     idprofile="";
-    idticket="";
 }
 module.exports = UserDto;

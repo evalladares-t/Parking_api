@@ -1,6 +1,7 @@
 class MenuModels {
     idmenu = 0;
-    name = "";
+    icon="";
+    text = "";
     owner = 0;
 }
 module.exports = MenuModels;

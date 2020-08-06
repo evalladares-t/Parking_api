@@ -1,6 +1,7 @@
 class MenuDto{
     idmenu = 0;
-    name = "";
+    icon="";
+    text = "";
     owner = null;
 
 }

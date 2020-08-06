@@ -14,6 +14,17 @@ class MenuRepository extends BaseRepository {
         return result
     }
 
+   /* indexdep(offset,limit) {
+        const result = this._db[this.entity].findAndCountAll({
+            offset,limit,order:[
+                'idmenu'
+            ],where:{
+
+            }
+        });
+        return result
+    }*/
+
     show(idmenu) {
         const result = this._db[this.entity].findOne({ where: { idmenu } });
 

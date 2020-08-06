@@ -23,12 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement:true,
       comment:'IDENTIFICADOR UNICO'
     },
-    name: {
+    text: {
       type:DataTypes.STRING(50),
       comment:'NOMBRE DEL REGISTRO MENU'
     },
+    icon: {
+      type:DataTypes.STRING(50),
+      comment:'NOMBRE DEL ICONO DEL MENU'
+    },
     owner: {
-     type: DataTypes.STRING(50),
+     type: DataTypes.INTEGER,
      comment:'DUEÑO DEL REGISTRO MENU'
     }
   }, {

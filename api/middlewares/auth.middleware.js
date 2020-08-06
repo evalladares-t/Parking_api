@@ -16,7 +16,7 @@ class AuthMiddleware{
         //console.log(token)
         if (!token) {
           next(
-                res.header('Access-Control-Allow-Origin', '*','Access-Control-Allow-Headers', 'Authorization', 'X-API-KEY', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Access-Control-Allow-Request-Method','Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE').status(UNAUTHORIZED).json({
+                res.status(UNAUTHORIZED).json({
                 status: 'error',
                 message:'UNAUTHORIZED'
             }));

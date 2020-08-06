@@ -9,6 +9,14 @@ apiRoute.use(cors()).use(bodyParser.json()).use(compression());
 module.exports = function ({ AuthMiddleware,AuthController, UserRoutes, MenuRoutes, PermissionRoutes,
 ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,ParkingRoutes}) {
 
+    apiRoute.all('*', function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');        
+        next();
+     });
+
     apiRoute.post('/login', AuthController.login.bind(AuthController));
 
     //Rutas generales

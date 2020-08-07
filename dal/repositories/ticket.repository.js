@@ -14,6 +14,13 @@ class TicketRepository extends BaseRepository {
         return result
     }
 
+    indexdep() {
+        const result = this._db[this.entity].findAll(
+            {attributes:  ['idticket'] }
+        );
+        return result
+    }
+
     async show(idticket) {
         const result = await this._db[this.entity].findOne({ where: { idticket },
             include:[{

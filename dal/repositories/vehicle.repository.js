@@ -14,6 +14,19 @@ class VehicleRepository extends BaseRepository {
         return result
     }
 
+    async showdep(idvehicle) {
+        const result = await this._db[this.entity].findOne({ where: { idvehicle },
+            include:[{
+                model: this._db["tb_typevehicle"],
+                as:'tb_typevehicle',
+            }]
+        });
+
+        //console.log(result)
+
+        return result
+    }
+
     show(idvehicle) {
         const result = this._db[this.entity].findOne({ where: { idvehicle } });
 

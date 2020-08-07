@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-
+//const jsreport = require('jsreport')().init();
 class Server{
     constructor({config,router}) {
         this._config = config;

@@ -27,7 +27,6 @@ class MenuRepository extends BaseRepository {
 
     show(idmenu) {
         const result = this._db[this.entity].findOne({ where: { idmenu } });
-
         return result
     }
 

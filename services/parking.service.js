@@ -6,6 +6,12 @@ class ParkingService extends BaseService {
         super(ParkingBusiness);
     }
 
+    async available() {
+        const result = await this._entityBusiness.available();
+        const rows = result;
+        return rows;
+    }
+
 }
 
 module.exports = ParkingService;

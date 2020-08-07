@@ -7,6 +7,7 @@ module.exports = function ({TicketController}) {
     router.get('/', TicketController.index.bind(TicketController));
     router.get('/:id', TicketController.show.bind(TicketController));
     router.post('/', TicketController.store.bind(TicketController));
+    router.get('/pdf/:id', TicketController.printpdf.bind(TicketController));
     router.patch('/:id', TicketController.update.bind(TicketController));
     router.delete('/:id', TicketController.destroy.bind(TicketController));
     router.use('/*', (req,res)=>{

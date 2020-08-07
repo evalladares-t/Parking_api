@@ -33,6 +33,17 @@ class VehicleSpaceController extends BaseController{
         })
     }
 
+    async salida(req,res){
+        const {body} = req;
+        const {id} = req.params;
+        await this._serviceBase.salida(id,body);
+        return res.status(201).json({
+            'message':'Se actualizo correctamente',
+            'data' : {
+                id
+            }
+        })
+    }
 }
 
 module.exports = VehicleSpaceController;

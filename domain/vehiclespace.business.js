@@ -36,6 +36,13 @@ class VehicleSpaceBusiness extends BaseBusiness {
         return mapper(this.entityToMap, createdEntity.toJSON());
     }
 
+    async salida(id, entity) {        
+        const updatedEntity = await this._entityRepository.update(id, entity);
+        const emit = {"state":1};
+        await this.parkingRepository.update(id, emit);
+        return mapper(this.entityToMap, updatedEntity);
+    }
+
 }
 
 module.exports = VehicleSpaceBusiness;

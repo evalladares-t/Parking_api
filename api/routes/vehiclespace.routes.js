@@ -8,6 +8,7 @@ module.exports = function ({VehicleSpaceController}) {
     router.get('/:id', VehicleSpaceController.showdep.bind(VehicleSpaceController));
     router.post('/', VehicleSpaceController.storedep.bind(VehicleSpaceController));
     router.patch('/:id', VehicleSpaceController.update.bind(VehicleSpaceController));
+    router.patch('/salida/:id', VehicleSpaceController.salida.bind(VehicleSpaceController));
     router.delete('/:id', VehicleSpaceController.destroy.bind(VehicleSpaceController));
     router.use('/*', (req,res)=>{
         res.json({'message':'Recurso no encotrado'})});

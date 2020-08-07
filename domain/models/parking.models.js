@@ -1,7 +1,7 @@
 class ParkingModels{
     idparking = 0;
     name = "";
-    state = "";
+    state = false;
 
 }
 module.exports = ParkingModels;

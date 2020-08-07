@@ -16,6 +16,10 @@ class VehicleSpaceService extends BaseService {
         return createdEntity;
     }
     
+    async salida(id, entity) {
+        const updatedEntity = await this._entityBusiness.salida(id, entity);
+        return updatedEntity;
+    }
 }
 
 module.exports = VehicleSpaceService;

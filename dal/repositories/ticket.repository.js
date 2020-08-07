@@ -14,9 +14,35 @@ class TicketRepository extends BaseRepository {
         return result
     }
 
-    show(idticket) {
-        const result = this._db[this.entity].findOne({ where: { idticket } });
+    async show(idticket) {
+        const result = await this._db[this.entity].findOne({ where: { idticket },
+            include:[{
+                model: this._db["tb_user"],
+                as:'tb_user',
 
+            },{
+                model: this._db["tb_vehiclespace"],
+                as:'tb_vehiclespace',
+                /*include:[{
+                    model: this._db["tb_vehicle"],
+                    as:'tb_vehicle',
+                    include:[{
+                        model: this._db["tb_typevehicle"],
+                        as:'tb_typevehicle',      
+                    }],
+                },{
+                    model: this._db["tb_parking"],
+                    as:'tb_parking',
+                    attributes: ['idparking','name'] ,
+                }]  */              
+            }],
+        });
+        //console.log(result)
+        return result
+    }
+
+    printpdf(idticket) {
+        const result = this._db[this.entity].findOne({ where: { idticket } });
         return result
     }
 

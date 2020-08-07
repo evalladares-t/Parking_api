@@ -13,10 +13,23 @@ class ParkingRepository extends BaseRepository {
         });
         return result
     }
+    
+    show(idparking) {
+        const result = this._db[this.entity].findOne({ where: { idparking } });
+        return result
+    }
+
+    available() {
+        const state='1'
+        const result = this._db[this.entity].findAll(
+            {where:{state}}
+        );
+        //console.log(result)
+        return result
+    }
 
     show(idparking) {
         const result = this._db[this.entity].findOne({ where: { idparking } });
-
         return result
     }
 

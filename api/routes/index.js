@@ -24,7 +24,7 @@ ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,P
     apiRoute.use('/menu', AuthMiddleware.authMiddleware, MenuRoutes);
     apiRoute.use('/permission', AuthMiddleware.authMiddleware, PermissionRoutes);
     apiRoute.use('/profile', AuthMiddleware.authMiddleware, ProfileRoutes);
-    apiRoute.use('/ticket', AuthMiddleware.authMiddleware, TicketRoutes);
+    apiRoute.use('/ticket',  TicketRoutes);
     apiRoute.use('/vehiclespace', AuthMiddleware.authMiddleware, VehicleSpaceRoutes);
     apiRoute.use('/vehicle', AuthMiddleware.authMiddleware, VehicleRoutes);
     apiRoute.use('/typevehicle', AuthMiddleware.authMiddleware, TypeVehicleRoutes);

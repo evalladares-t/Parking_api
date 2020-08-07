@@ -7,17 +7,7 @@ class TypeVehicleBusiness extends BaseBusiness {
         super(TypeVehicleRepository, TypeVehicle);
     }
 
-    async showdep(id) {
-        const entity = await this._entityRepository.show(id);
-        if (!entity) return null;
-        //console.log(entity)
-        const typevehicle = mapper(this.entityToMap, entity.toJSON());
-        let vehicle = null;
-        if(entity.tb_vehicle){
-            vehicle = mapper(Vehicle, entity.tb_vehicle);
-        }
-        return {typevehicle,vehicle}
-    }
+    
     
 }
 

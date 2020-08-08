@@ -2,7 +2,7 @@ class VehicleSpaceDto{
     idvehiclespace = 0;
     start = "";
     end  = "";
-    cost = "";
+    cost = 0;
     idvehicle = "";
     idparking = ""; 
 

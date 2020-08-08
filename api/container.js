@@ -16,6 +16,7 @@ const VehicleSpaceRoutes = require('./routes/vehiclespace.routes');
 const VehicleRoutes = require('./routes/vehicle.routes');
 const TypeVehicleRoutes = require('./routes/typevehicle.routes');
 const ParkingRoutes = require('./routes/parking.routes');
+const ReportRoutes = require('./routes/report.routes');
 
 //Controllers
 const { UserController, 
@@ -27,6 +28,7 @@ const { UserController,
     VehicleController,
     TypeVehicleController,
     ParkingController,
+    ReportController,
     AuthController} = require('./controllers');
 
 //Middleware
@@ -96,6 +98,7 @@ container
         VehicleRoutes : asClass(VehicleRoutes).singleton(),
         TypeVehicleRoutes : asClass(TypeVehicleRoutes).singleton(),
         ParkingRoutes : asClass(ParkingRoutes).singleton(),
+        ReportRoutes : asClass(ReportRoutes).singleton(),
     //Api Controller
         AuthController : asClass(AuthController).singleton(),
         UserController : asClass(UserController).singleton(),
@@ -107,7 +110,7 @@ container
         VehicleController : asClass(VehicleController).singleton(),
         TypeVehicleController : asClass(TypeVehicleController).singleton(),
         ParkingController : asClass(ParkingController).singleton(),    
-        
+        ReportController : asClass(ReportController).singleton(),         
     })
     .register({
         //Middleware

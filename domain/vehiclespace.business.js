@@ -14,7 +14,6 @@ class VehicleSpaceBusiness extends BaseBusiness {
     async showdep(id) {
         const entity = await this._entityRepository.show(id);
         if (!entity) return null;
-        //console.log(entity)
         const vehiclespace = mapper(this.entityToMap, entity.toJSON());
         let vehicle = null;
         let parking = null;
@@ -29,19 +28,27 @@ class VehicleSpaceBusiness extends BaseBusiness {
     }
 
     async storedep(entity) {
+        const iduser=entity.iduser;
         entity = mapper(this.entityToMap, entity);
-        //console.log(entity.idparking)
         const createdEntity = await this._entityRepository.store(entity);
         const emit = {"state":0};
         await this.parkingRepository.update(entity.idparking, emit);
         const totalticket = await this.ticketRepository.indexdep();
-        let nameticket=0;
+        let name=0;
         if(totalticket!=null){
-            const rows = totalticket.map(entity => mapper(this.Ticket, entity.toJSON()));            
+            const rows = mapper(Ticket, totalticket);
+            name='EV-'+(rows.idticket+1);
+            const idvehiclespace= createdEntity.idvehiclespace; 
+            const ticketdata = {name,iduser,idvehiclespace}
+            await this.ticketRepository.store(ticketdata);
+        }else{
+            const idticket=1;
+            name='EV-1';
+            const idvehiclespace= createdEntity.idvehiclespace; 
+            const ticketdata = {idticket,name,iduser,idvehiclespace}
+            await this.ticketRepository.store(ticketdata);
         }
         
-        const ticketdata = {name:'A',iduser:entity.iduser}
-        //await this.ticketRepository.store(entity.idparking, ticketdata);
         return mapper(this.entityToMap, createdEntity.toJSON());
     }
 
@@ -52,6 +59,16 @@ class VehicleSpaceBusiness extends BaseBusiness {
         return mapper(this.entityToMap, updatedEntity);
     }
 
+    async reporte(start,end) {
+        const vehiclespace= await (this._entityRepository.reporte(start,end));
+        //console.log(vehiclespace);
+        
+       //const vehicle = await (this._entityRepository.reporte().tb_vehiclespace.tb_vehicle); 
+        
+        const result = vehiclespace.map(entity => mapper(this.entityToMap, entity.toJSON()));
+        //console.log(result);
+        return result;
+    }
 }
 
 module.exports = VehicleSpaceBusiness;

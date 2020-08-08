@@ -6,6 +6,11 @@ class VehicleSpaceService extends BaseService {
         super(VehicleSpaceBusiness);
     }
 
+    async reporte(start,end) {
+        const result = await this._entityBusiness.reporte(start,end);
+        return result;
+    }
+
     async showdep(id) {
         const entity = await this._entityBusiness.showdep(id);
         return entity;

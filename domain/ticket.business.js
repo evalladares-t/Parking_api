@@ -37,7 +37,7 @@ class TicketBusiness extends BaseBusiness {
         if(entityter){            
             vehicle= mapper(Vehicle, entityter.toJSON());  
             typevehicle = mapper(TypeVehicle, entityter.tb_typevehicle.toJSON());         
-        }                
+        }
         //console.log(typevehicle)
         return {ticket,user,vehiclespace,parking,vehicle,typevehicle}
     }

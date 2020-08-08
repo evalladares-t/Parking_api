@@ -14,10 +14,12 @@ class TicketRepository extends BaseRepository {
         return result
     }
 
-    indexdep() {
-        const result = this._db[this.entity].findAll(
-            {attributes:  ['idticket'] }
-        );
+    async indexdep() {
+        const result = await this._db[this.entity].findOne(
+            {attributes:  ['idticket'] ,
+            order: [ [ 'idticket', 'DESC' ]],
+        });
+        //console.log(result)
         return result
     }
 
@@ -26,11 +28,10 @@ class TicketRepository extends BaseRepository {
             include:[{
                 model: this._db["tb_user"],
                 as:'tb_user',
-
             },{
                 model: this._db["tb_vehiclespace"],
                 as:'tb_vehiclespace',
-                /*include:[{
+                include:[{
                     model: this._db["tb_vehicle"],
                     as:'tb_vehicle',
                     include:[{
@@ -39,12 +40,10 @@ class TicketRepository extends BaseRepository {
                     }],
                 },{
                     model: this._db["tb_parking"],
-                    as:'tb_parking',
-                    attributes: ['idparking','name'] ,
-                }]  */              
+                    as:'tb_parking',            
+                }]              
             }],
         });
-        //console.log(result)
         return result
     }
 

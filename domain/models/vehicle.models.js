@@ -4,6 +4,7 @@ class VehicleModels{
     description = "";
     reference = "";
     idtypevehicle = "";
+    tb_typevehicle="";
 
 }
 module.exports = VehicleModels;

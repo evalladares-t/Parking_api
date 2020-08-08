@@ -7,7 +7,7 @@ const apiRoute = Router();
 apiRoute.use(cors()).use(bodyParser.json()).use(compression());
 
 module.exports = function ({ AuthMiddleware,AuthController, UserRoutes, MenuRoutes, PermissionRoutes,
-ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,ParkingRoutes}) {
+ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,ParkingRoutes,ReportRoutes}) {
 
     apiRoute.all('*', function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
@@ -21,6 +21,7 @@ ProfileRoutes, TicketRoutes,VehicleSpaceRoutes,VehicleRoutes,TypeVehicleRoutes,P
 
     //Rutas generales
     apiRoute.use('/user', AuthMiddleware.authMiddleware, UserRoutes);
+    apiRoute.use('/reporte', ReportRoutes);
     apiRoute.use('/menu', AuthMiddleware.authMiddleware, MenuRoutes);
     apiRoute.use('/permission', AuthMiddleware.authMiddleware, PermissionRoutes);
     apiRoute.use('/profile', AuthMiddleware.authMiddleware, ProfileRoutes);

@@ -12,7 +12,7 @@ class MenuBusiness extends BaseBusiness {
         const entities = result.rows;
         const count = result.count;
         const rows = entities.map(entity => mapper(this.entityToMap, entity.toJSON()));
-        console.log(rows.MenuModels.owner)
+        //console.log(rows.MenuModels.owner)
         return {rows,count};
     }
 

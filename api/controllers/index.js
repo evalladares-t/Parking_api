@@ -10,4 +10,5 @@ module.exports = {
     TypeVehicleController : require('./typevehicle.controller'),
     VehicleSpaceController : require('./vehiclespace.controller'),
     VehicleController : require('./vehicle.controller'),
+    ReportController: require('./report.controller')
 };

@@ -7,7 +7,12 @@ class TypeVehicleBusiness extends BaseBusiness {
         super(TypeVehicleRepository, TypeVehicle);
     }
 
-    
+    async indexdep() {
+        const result= await (this._entityRepository.indexdep());
+        const entities = result;
+        const rows = entities.map(entity => mapper(this.entityToMap, entity.toJSON()));
+        return rows;
+    }
     
 }
 

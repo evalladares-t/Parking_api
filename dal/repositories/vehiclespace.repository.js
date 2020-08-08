@@ -14,6 +14,17 @@ class VehicleSpaceRepository extends BaseRepository {
         return result
     }//2020-07-27T10:42:22.000Z
 
+    async reporte(inicio,fin) {
+        const result = await this._db[this.entity].findAll({
+            include:[{
+                model:this._db["tb_vehicle"],
+                as:'tb_vehicle'
+            }]
+        });
+        //console.log(result)
+        return result
+    }
+
     async show(idvehiclespace) {
         const result = await this._db[this.entity].findOne({ where: { idvehiclespace },
             include:[{
